@@ -1,0 +1,8 @@
+{
+  "name": "Ravintola Tilausjärjestelmä",
+  "description": "Kevyt ja reaaliaikainen tilausjärjestelmä ja keittiön hallintapaneeli ravintoloille.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

@@ -1,0 +1,132 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "User profile with role details",
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string",
+          "description": "Unique user ID matching Auth UID"
+        },
+        "email": {
+          "type": "string",
+          "description": "User email address"
+        },
+        "name": {
+          "type": "string",
+          "description": "User name"
+        },
+        "phone": {
+          "type": "string",
+          "description": "Optional user phone number"
+        },
+        "role": {
+          "type": "string",
+          "enum": ["customer", "admin"],
+          "description": "Role of the user"
+        },
+        "createdAt": {
+          "type": "integer",
+          "description": "Creation timestamp in milliseconds"
+        }
+      },
+      "required": ["uid", "email", "name", "role", "createdAt"]
+    },
+    "MenuItem": {
+      "title": "MenuItem",
+      "description": "Restaurant menu item",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "allergens": {
+          "type": "array"
+        },
+        "price": {
+          "type": "number"
+        },
+        "category": {
+          "type": "string"
+        },
+        "imageUrl": {
+          "type": "string"
+        },
+        "isSoldOut": {
+          "type": "boolean"
+        },
+        "createdAt": {
+          "type": "integer"
+        }
+      },
+      "required": ["name", "description", "allergens", "price", "category", "isSoldOut", "createdAt"]
+    },
+    "Order": {
+      "title": "Order",
+      "description": "Customer order",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "customerId": {
+          "type": "string"
+        },
+        "customerName": {
+          "type": "string"
+        },
+        "customerPhone": {
+          "type": "string"
+        },
+        "customerEmail": {
+          "type": "string"
+        },
+        "items": {
+          "type": "array"
+        },
+        "totalPrice": {
+          "type": "number"
+        },
+        "pickupTimeType": {
+          "type": "string",
+          "enum": ["heti", "kellonaika"]
+        },
+        "pickupTimeValue": {
+          "type": "string"
+        },
+        "additionalNotes": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["vastaanotettu", "valmistetaan", "valmis", "nouto_ok", "peruutettu"]
+        },
+        "createdAt": {
+          "type": "integer"
+        }
+      },
+      "required": ["customerId", "customerName", "customerEmail", "items", "totalPrice", "pickupTimeType", "status", "createdAt"]
+    }
+  },
+  "firestore": {
+    "users/{userId}": {
+      "schema": "UserProfile",
+      "description": "Users profile collection"
+    },
+    "menu/{itemId}": {
+      "schema": "MenuItem",
+      "description": "Menu items collection"
+    },
+    "orders/{orderId}": {
+      "schema": "Order",
+      "description": "Customer orders collection"
+    }
+  }
+}
